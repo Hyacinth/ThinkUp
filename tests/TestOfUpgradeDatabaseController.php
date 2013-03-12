@@ -837,8 +837,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
         }
         $this->debug('migration_version '.$migration_version);
         $migration_test1 = $this->migrations_test_dir . $this->migrations_file1;
-        $migration1 = $this->migrations_dir
-        . '2010-09-17_v' . $migration_version . '.sql.migration';
+        $migration1 = $this->migrations_dir . '2010-09-17_v' . $migration_version . '.sql.migration';
         copy($migration_test1, $migration1);
         $this->test_migrations[] = $migration1;
         if ($count == 2) {
@@ -846,8 +845,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
             $migration_version--;
             $migration_version += 0.12;
             $migration_version .= 'beta';
-            $migration2 = $this->migrations_dir
-            . '2010-09-16_v' . $migration_version . '.sql.migration';
+            $migration2 = $this->migrations_dir . '2010-09-16_v' . $migration_version . '.sql.migration';
             copy($migration_test2, $migration2);
             $this->test_migrations[] = $migration2;
         }

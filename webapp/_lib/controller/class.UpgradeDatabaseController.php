@@ -126,6 +126,7 @@ class UpgradeDatabaseController extends ThinkUpAuthController {
             if (version_compare($db_version, $thinkup_db_version, '<')) {
                 // get migrations we need to run...
                 $migrations = $this->getMigrationList($db_version);
+                print_r($migrations);
                 $this->addToView('migrations',$migrations);
                 $this->addToView('migrations_json', json_encode($migrations));
                 if (isset($_GET['upgrade_token'])) {
