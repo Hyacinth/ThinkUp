@@ -250,6 +250,11 @@ class UpgradeDatabaseController extends ThinkUpAuthController {
         $table_prefix = $config->getValue('table_prefix');
         echo "getMigrationList dir ".$dir."\n";
         echo "is_dir(dir) ".is_dir($dir)."\n";
+
+        $dir_list = glob($dir . '/*.sql', GLOB_BRACE);
+        echo "Printing dir_list: \n";
+        print_r($dir_list);
+
         $dir_list = glob('{' . $dir . '/*.sql,' . $dir . '/*.migration}', GLOB_BRACE);
         echo "Printing dir_list: \n";
         print_r($dir_list);
