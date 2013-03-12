@@ -123,9 +123,9 @@ class UpgradeDatabaseController extends ThinkUpAuthController {
         } else {
             $this->setPageTitle('Upgrade the ThinkUp Database Structure');
             $this->setViewTemplate('install.upgrade-database.tpl');
+            $result = version_compare($db_version, $thinkup_db_version, '<');
+            echo 'version_compare result '.$result."\n";
             if (version_compare($db_version, $thinkup_db_version, '<')) {
-                $result = version_compare($db_version, $thinkup_db_version, '<');
-                echo 'version_compare result '.$result."\n";
                 echo 'db_version '.$db_version. '  thinkup_db_version '.$thinkup_db_version. "\n";
                 // get migrations we need to run...
                 $migrations = $this->getMigrationList($db_version);
