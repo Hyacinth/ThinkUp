@@ -251,13 +251,15 @@ class UpgradeDatabaseController extends ThinkUpAuthController {
         echo "getMigrationList dir ".$dir."\n";
         echo "is_dir(dir) ".is_dir($dir)."\n";
 
-        $dir_list = glob($dir . '/*.sql', GLOB_BRACE);
+        $dir_list_1 = glob($dir . '/*.sql', GLOB_BRACE);
+        $dir_list_2 = glob($dir . '/*.migration', GLOB_BRACE);
+        $dir_list = array_merge($dir_list_1, $dir_list_2);
         echo "Printing dir_list: \n";
         print_r($dir_list);
 
-        $dir_list = glob('{' . $dir . '/*.sql,' . $dir . '/*.migration}', GLOB_BRACE);
-        echo "Printing dir_list: \n";
-        print_r($dir_list);
+//        $dir_list = glob('{' . $dir . '/*.sql,' . $dir . '/*.migration}', GLOB_BRACE);
+//        echo "Printing dir_list: \n";
+//        print_r($dir_list);
         $migrations = array();
         for ($i = 0; $i < count($dir_list); $i++) {
             if (preg_match('/_v(\d+\.\d+(\.\d+)?(\w+)?)\.sql(\.migration)?/', $dir_list[$i], $matches)
