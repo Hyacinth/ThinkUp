@@ -101,6 +101,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
         $this->simulateLogin('me@example.com', true);
         $controller = new UpgradeDatabaseController(true);
         $results = $controller->go();
+        $this->debug($results);
         $this->assertPattern('/needs 1 database update/', $results);
         $v_mgr = $controller->getViewManager();
         $queries = $v_mgr->getTemplateDataItem('migrations');
@@ -112,6 +113,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
         $this->migrationFiles(2);
 
         $results = $controller->go();
+        $this->debug($results);
         $this->assertPattern('/needs 2 database updates/', $results);
         $v_mgr = $controller->getViewManager();
         $queries = $v_mgr->getTemplateDataItem('migrations');
