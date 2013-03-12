@@ -249,6 +249,7 @@ class UpgradeDatabaseController extends ThinkUpAuthController {
         $config = Config::getInstance();
         $table_prefix = $config->getValue('table_prefix');
         $dir_list = glob('{' . $dir . '/*.sql,' . $dir . '/*.migration}', GLOB_BRACE);
+        echo "Printing dir_list: \n";
         print_r($dir_list);
         $migrations = array();
         for ($i = 0; $i < count($dir_list); $i++) {
