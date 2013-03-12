@@ -101,7 +101,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
         $this->simulateLogin('me@example.com', true);
         $controller = new UpgradeDatabaseController(true);
         $results = $controller->go();
-        $this->debug($results);
+        //$this->debug($results);
         $this->assertPattern('/needs 1 database update/', $results);
         $v_mgr = $controller->getViewManager();
         $queries = $v_mgr->getTemplateDataItem('migrations');
@@ -113,7 +113,7 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
         $this->migrationFiles(2);
 
         $results = $controller->go();
-        $this->debug($results);
+        //$this->debug($results);
         $this->assertPattern('/needs 2 database updates/', $results);
         $v_mgr = $controller->getViewManager();
         $queries = $v_mgr->getTemplateDataItem('migrations');
@@ -830,10 +830,12 @@ class TestOfUpgradeDatabaseController extends ThinkUpUnitTestCase {
     private function migrationFiles($count = 1) {
         $config = Config::getInstance();
         $app_version = $config->getValue('THINKUP_VERSION');
+        $this->debug('app_version '.$app_version);
         $migration_version = $app_version - 1;
         if (!preg_match('/\./', $migration_version)) {
             $migration_version .= '.0';
         }
+        $this->debug('migration_version '.$migration_version);
         $migration_test1 = $this->migrations_test_dir . $this->migrations_file1;
         $migration1 = $this->migrations_dir
         . '2010-09-17_v' . $migration_version . '.sql.migration';
